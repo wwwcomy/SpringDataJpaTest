@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- origin at X=0.0 Y=-10.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:java="http://www.java.com/javaTypes" xmlns:tns="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="Definition" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.4.2.Final-v20171109-1930-B1" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.jboss.org/drools" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:itemDefinition id="_request" isCollection="false" structureRef="com.cisco.eds.art.dto.shared.Request"/>
+  <bpmn2:itemDefinition id="_isApproved" isCollection="false" structureRef="Boolean"/>
+  <bpmn2:itemDefinition id="ItemDefinition_1" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_2" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_3" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_5" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_6" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_7" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_8" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_9" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_10" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_11" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_12" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_13" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_14" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_15" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_16" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_17" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_18" isCollection="false"/>
+  <bpmn2:process id="com.cisco.art.workflows.RuleSet-312-approveRule" tns:packageName="com.cisco.art.workflows" tns:version="1.0" name="RuleSet-312-approveRule" isExecutable="true" processType="Private">
+    <bpmn2:extensionElements>
+      <tns:import name="com.cisco.art.handler.DictionaryServiceHandler"/>
+      <tns:import name="com.cisco.eds.art.dto.shared.Request"/>
+      <tns:import name="com.cisco.art.handler.ProvisionServiceHandler"/>
+      <tns:import name="com.cisco.art.handler.RequestServiceHandler"/>
+      <tns:import name="com.cisco.art.handler.EmailHandler"/>
+    </bpmn2:extensionElements>
+    <bpmn2:property id="request" itemSubjectRef="_request" name="request"/>
+    <bpmn2:property id="isApproved" itemSubjectRef="_isApproved" name="isApproved"/>
+    <bpmn2:startEvent id="_jbpm-unique-78" name="Start" isInterrupting="false">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Start]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>_jbpm-unique-78-_jbpm-unique-80</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="_jbpm-unique-79" name="End">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[End]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-81-_jbpm-unique-79</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:scriptTask id="_jbpm-unique-80" name="init" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[init]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-78-_jbpm-unique-80</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-80-_jbpm-unique-89</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;init&quot;);kcontext.getKnowledgeRuntime().insert(request);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:exclusiveGateway id="_jbpm-unique-81" gatewayDirection="Converging">
+      <bpmn2:incoming>_jbpm-unique-85-_jbpm-unique-81</bpmn2:incoming>
+      <bpmn2:incoming>_jbpm-unique-88-_jbpm-unique-81</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-81-_jbpm-unique-79</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_jbpm-unique-82" gatewayDirection="Converging">
+      <bpmn2:incoming>_jbpm-unique-90-_jbpm-unique-82</bpmn2:incoming>
+      <bpmn2:incoming>_jbpm-unique-94-_jbpm-unique-82</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-82-_jbpm-unique-83</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:scriptTask id="_jbpm-unique-83" name="Update Request Status" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Update Request Status]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-82-_jbpm-unique-83</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-83-_jbpm-unique-84</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;update request status&quot;);RequestServiceHandler.updateRequestStatus(request.getRequestId(),&quot;Approved&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_jbpm-unique-84" name="Email" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Email]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-83-_jbpm-unique-84</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-84-_jbpm-unique-85</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;Email: eventName = &quot;+ request.getUserTaskName()+ &quot; eventType = Approved&quot;); EmailHandler.sendMail(request, &quot;Approved&quot;, request.getUserTaskName());</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_jbpm-unique-85" name="Provision" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Provision]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-84-_jbpm-unique-85</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-85-_jbpm-unique-81</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(request.getApprovers());System.out.println(request.isNeedApprove());System.out.println(&quot;Provision&quot;);ProvisionServiceHandler.startProvision(request);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_jbpm-unique-86" name="Provision" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Provision]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-94-_jbpm-unique-86</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-86-_jbpm-unique-87</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;Provision&quot;);ProvisionServiceHandler.startProvision(request);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_jbpm-unique-87" name="Update Request Status" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Update Request Status]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-86-_jbpm-unique-87</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-87-_jbpm-unique-88</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;update request status&quot;);RequestServiceHandler.updateRequestStatus(request.getRequestId(),&quot;Access Denied&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_jbpm-unique-88" name="Email" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Email]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-87-_jbpm-unique-88</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-88-_jbpm-unique-81</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;Email: eventName = &quot; + request.getUserTaskName() + &quot; eventType = Denied&quot;); EmailHandler.sendMail(request, &quot;Denied&quot;, request.getUserTaskName());</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:businessRuleTask id="_jbpm-unique-89" g:ruleFlowGroup="group_User_Termination_approveRule_approveRule_0" name="Rule 0">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Rule 0]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-80-_jbpm-unique-89</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-89-_jbpm-unique-90</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_1">
+        <bpmn2:inputSet id="InputSet_1"/>
+        <bpmn2:outputSet id="OutputSet_1"/>
+      </bpmn2:ioSpecification>
+    </bpmn2:businessRuleTask>
+    <bpmn2:exclusiveGateway id="_jbpm-unique-90" gatewayDirection="Diverging">
+      <bpmn2:incoming>_jbpm-unique-89-_jbpm-unique-90</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-90-_jbpm-unique-82</bpmn2:outgoing>
+      <bpmn2:outgoing>_jbpm-unique-90-_jbpm-unique-91</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:scriptTask id="_jbpm-unique-91" name="Update Request Status" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Update Request Status]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-90-_jbpm-unique-91</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-91-_jbpm-unique-92</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;update request status&quot;);RequestServiceHandler.updateRequestStatus(request.getRequestId(),&quot;Pending&quot;);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_jbpm-unique-92" name="Email" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[Email]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-91-_jbpm-unique-92</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-92-_jbpm-unique-93</bpmn2:outgoing>
+      <bpmn2:script>System.out.println(&quot;Email: eventName = &quot;+ request.getUserTaskName() + &quot; eventType = Pending Approve&quot;); EmailHandler.sendMail(request, &quot;Pending Approve&quot;, request.getUserTaskName());</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:exclusiveGateway id="_jbpm-unique-94" gatewayDirection="Diverging">
+      <bpmn2:incoming>_jbpm-unique-93-_jbpm-unique-94</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-94-_jbpm-unique-82</bpmn2:outgoing>
+      <bpmn2:outgoing>_jbpm-unique-94-_jbpm-unique-86</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:userTask id="_jbpm-unique-93" name="User Task 0">
+      <bpmn2:extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>System.out.println(&quot;Enter User task approvers = &quot; + request.getApprovers());</tns:script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <tns:script>request.setNeedApprove(false);kcontext.getKnowledgeRuntime().insert(request);</tns:script>
+        </tns:onExit-script>
+        <tns:metaData name="elementname">
+          <tns:metaValue><![CDATA[User Task 0]]></tns:metaValue>
+        </tns:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_jbpm-unique-92-_jbpm-unique-93</bpmn2:incoming>
+      <bpmn2:outgoing>_jbpm-unique-93-_jbpm-unique-94</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_2">
+        <bpmn2:dataOutput id="_jbpm-unique-93_isApprovedOutput" name="isApproved"/>
+        <bpmn2:inputSet id="InputSet_2"/>
+        <bpmn2:outputSet id="OutputSet_2">
+          <bpmn2:dataOutputRefs>_jbpm-unique-93_isApprovedOutput</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
+        <bpmn2:sourceRef>_jbpm-unique-93_isApprovedOutput</bpmn2:sourceRef>
+        <bpmn2:targetRef>isApproved</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:potentialOwner id="PotentialOwner_1">
+        <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_1">
+          <bpmn2:formalExpression id="FormalExpression_1">#{request.approvers}</bpmn2:formalExpression>
+        </bpmn2:resourceAssignmentExpression>
+      </bpmn2:potentialOwner>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="_jbpm-unique-81-_jbpm-unique-79" sourceRef="_jbpm-unique-81" targetRef="_jbpm-unique-79"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-78-_jbpm-unique-80" sourceRef="_jbpm-unique-78" targetRef="_jbpm-unique-80"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-85-_jbpm-unique-81" sourceRef="_jbpm-unique-85" targetRef="_jbpm-unique-81"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-88-_jbpm-unique-81" sourceRef="_jbpm-unique-88" targetRef="_jbpm-unique-81"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-90-_jbpm-unique-82" name="constraint 13_5" sourceRef="_jbpm-unique-90" targetRef="_jbpm-unique-82">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_2" language="http://www.java.com/java">return request.isNeedApprove() == false;</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_jbpm-unique-94-_jbpm-unique-82" name="constraint 17_5" sourceRef="_jbpm-unique-94" targetRef="_jbpm-unique-82">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_3" language="http://www.java.com/java">return isApproved == true;</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_jbpm-unique-82-_jbpm-unique-83" sourceRef="_jbpm-unique-82" targetRef="_jbpm-unique-83"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-83-_jbpm-unique-84" sourceRef="_jbpm-unique-83" targetRef="_jbpm-unique-84"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-84-_jbpm-unique-85" sourceRef="_jbpm-unique-84" targetRef="_jbpm-unique-85"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-94-_jbpm-unique-86" name="constraint 17_9" sourceRef="_jbpm-unique-94" targetRef="_jbpm-unique-86">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_4" language="http://www.java.com/java">return isApproved == false;</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_jbpm-unique-86-_jbpm-unique-87" sourceRef="_jbpm-unique-86" targetRef="_jbpm-unique-87"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-87-_jbpm-unique-88" sourceRef="_jbpm-unique-87" targetRef="_jbpm-unique-88"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-80-_jbpm-unique-89" sourceRef="_jbpm-unique-80" targetRef="_jbpm-unique-89"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-89-_jbpm-unique-90" sourceRef="_jbpm-unique-89" targetRef="_jbpm-unique-90"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-90-_jbpm-unique-91" name="constraint 13_14" sourceRef="_jbpm-unique-90" targetRef="_jbpm-unique-91">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5" language="http://www.java.com/java">return request.isNeedApprove() == true;</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_jbpm-unique-91-_jbpm-unique-92" sourceRef="_jbpm-unique-91" targetRef="_jbpm-unique-92"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-93-_jbpm-unique-94" sourceRef="_jbpm-unique-93" targetRef="_jbpm-unique-94"/>
+    <bpmn2:sequenceFlow id="_jbpm-unique-92-_jbpm-unique-93" sourceRef="_jbpm-unique-92" targetRef="_jbpm-unique-93"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process_1" bpmnElement="com.cisco.art.workflows.RuleSet-312-approveRule">
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="_jbpm-unique-78">
+        <dc:Bounds height="48.0" width="48.0" x="0.0" y="10.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="25.0" x="11.0" y="58.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="_jbpm-unique-79">
+        <dc:Bounds height="48.0" width="48.0" x="35.0" y="520.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="22.0" x="48.0" y="568.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_1" bpmnElement="_jbpm-unique-80">
+        <dc:Bounds height="48.0" width="48.0" x="101.0" y="10.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="16.0" x="117.0" y="26.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="_jbpm-unique-81" isMarkerVisible="true">
+        <dc:Bounds height="48.0" width="48.0" x="120.0" y="373.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_2" bpmnElement="_jbpm-unique-82" isMarkerVisible="true">
+        <dc:Bounds height="48.0" width="48.0" x="970.0" y="192.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_2" bpmnElement="_jbpm-unique-83">
+        <dc:Bounds height="48.0" width="48.0" x="878.0" y="373.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="45.0" width="53.0" x="876.0" y="374.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_3" bpmnElement="_jbpm-unique-84">
+        <dc:Bounds height="48.0" width="48.0" x="809.0" y="530.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="32.0" x="817.0" y="546.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_4" bpmnElement="_jbpm-unique-85">
+        <dc:Bounds height="48.0" width="48.0" x="202.0" y="564.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="51.0" x="201.0" y="580.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_5" bpmnElement="_jbpm-unique-86">
+        <dc:Bounds height="48.0" width="48.0" x="315.0" y="338.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="51.0" x="314.0" y="354.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_6" bpmnElement="_jbpm-unique-87">
+        <dc:Bounds height="48.0" width="48.0" x="353.0" y="260.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="45.0" width="53.0" x="351.0" y="261.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_7" bpmnElement="_jbpm-unique-88">
+        <dc:Bounds height="48.0" width="48.0" x="338.0" y="77.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="32.0" x="346.0" y="93.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_1" bpmnElement="_jbpm-unique-89">
+        <dc:Bounds height="48.0" width="48.0" x="274.0" y="26.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="36.0" x="280.0" y="42.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_3" bpmnElement="_jbpm-unique-90" isMarkerVisible="true">
+        <dc:Bounds height="48.0" width="48.0" x="500.0" y="30.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_8" bpmnElement="_jbpm-unique-91">
+        <dc:Bounds height="48.0" width="48.0" x="755.0" y="148.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="45.0" width="53.0" x="753.0" y="149.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_9" bpmnElement="_jbpm-unique-92">
+        <dc:Bounds height="48.0" width="48.0" x="745.0" y="338.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="32.0" x="753.0" y="354.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_4" bpmnElement="_jbpm-unique-94" isMarkerVisible="true">
+        <dc:Bounds height="48.0" width="48.0" x="300.0" y="440.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_UserTask_1" bpmnElement="_jbpm-unique-93">
+        <dc:Bounds height="48.0" width="48.0" x="520.0" y="338.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="67.0" x="511.0" y="354.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="_jbpm-unique-81-_jbpm-unique-79" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_EndEvent_1">
+        <di:waypoint xsi:type="dc:Point" x="120.0" y="397.0"/>
+        <di:waypoint xsi:type="dc:Point" x="59.0" y="397.0"/>
+        <di:waypoint xsi:type="dc:Point" x="59.0" y="520.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="_jbpm-unique-78-_jbpm-unique-80" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_ScriptTask_1">
+        <di:waypoint xsi:type="dc:Point" x="24.0" y="10.0"/>
+        <di:waypoint xsi:type="dc:Point" x="24.0" y="0.0"/>
+        <di:waypoint xsi:type="dc:Point" x="62.0" y="0.0"/>
+        <di:waypoint xsi:type="dc:Point" x="62.0" y="26.0"/>
+        <di:waypoint xsi:type="dc:Point" x="101.0" y="26.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="_jbpm-unique-85-_jbpm-unique-81" sourceElement="BPMNShape_ScriptTask_4" targetElement="BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="226.0" y="564.0"/>
+        <di:waypoint xsi:type="dc:Point" x="226.0" y="397.0"/>
+        <di:waypoint xsi:type="dc:Point" x="168.0" y="397.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="_jbpm-unique-88-_jbpm-unique-81" sourceElement="BPMNShape_ScriptTask_7" targetElement="BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="338.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="144.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="144.0" y="373.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="_jbpm-unique-90-_jbpm-unique-82" sourceElement="BPMNShape_ExclusiveGateway_3" targetElement="BPMNShape_ExclusiveGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="548.0" y="54.0"/>
+        <di:waypoint xsi:type="dc:Point" x="994.0" y="54.0"/>
+        <di:waypoint xsi:type="dc:Point" x="994.0" y="192.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="30.0" width="77.0" x="802.0" y="55.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="_jbpm-unique-94-_jbpm-unique-82" sourceElement="BPMNShape_ExclusiveGateway_4" targetElement="BPMNShape_ExclusiveGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="324.0" y="488.0"/>
+        <di:waypoint xsi:type="dc:Point" x="324.0" y="498.0"/>
+        <di:waypoint xsi:type="dc:Point" x="994.0" y="498.0"/>
+        <di:waypoint xsi:type="dc:Point" x="994.0" y="240.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="30.0" width="77.0" x="745.0" y="499.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="_jbpm-unique-82-_jbpm-unique-83" sourceElement="BPMNShape_ExclusiveGateway_2" targetElement="BPMNShape_ScriptTask_2">
+        <di:waypoint xsi:type="dc:Point" x="970.0" y="216.0"/>
+        <di:waypoint xsi:type="dc:Point" x="902.0" y="216.0"/>
+        <di:waypoint xsi:type="dc:Point" x="902.0" y="373.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_8" bpmnElement="_jbpm-unique-83-_jbpm-unique-84" sourceElement="BPMNShape_ScriptTask_2" targetElement="BPMNShape_ScriptTask_3">
+        <di:waypoint xsi:type="dc:Point" x="902.0" y="421.0"/>
+        <di:waypoint xsi:type="dc:Point" x="902.0" y="554.0"/>
+        <di:waypoint xsi:type="dc:Point" x="857.0" y="554.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_9" bpmnElement="_jbpm-unique-84-_jbpm-unique-85" sourceElement="BPMNShape_ScriptTask_3" targetElement="BPMNShape_ScriptTask_4">
+        <di:waypoint xsi:type="dc:Point" x="833.0" y="578.0"/>
+        <di:waypoint xsi:type="dc:Point" x="833.0" y="596.0"/>
+        <di:waypoint xsi:type="dc:Point" x="250.0" y="596.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_10" bpmnElement="_jbpm-unique-94-_jbpm-unique-86" sourceElement="BPMNShape_ExclusiveGateway_4" targetElement="BPMNShape_ScriptTask_5">
+        <di:waypoint xsi:type="dc:Point" x="324.0" y="440.0"/>
+        <di:waypoint xsi:type="dc:Point" x="324.0" y="413.0"/>
+        <di:waypoint xsi:type="dc:Point" x="339.0" y="413.0"/>
+        <di:waypoint xsi:type="dc:Point" x="339.0" y="386.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="30.0" width="77.0" x="294.0" y="414.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_11" bpmnElement="_jbpm-unique-86-_jbpm-unique-87" sourceElement="BPMNShape_ScriptTask_5" targetElement="BPMNShape_ScriptTask_6">
+        <di:waypoint xsi:type="dc:Point" x="339.0" y="338.0"/>
+        <di:waypoint xsi:type="dc:Point" x="339.0" y="292.0"/>
+        <di:waypoint xsi:type="dc:Point" x="353.0" y="292.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_12" bpmnElement="_jbpm-unique-87-_jbpm-unique-88" sourceElement="BPMNShape_ScriptTask_6" targetElement="BPMNShape_ScriptTask_7">
+        <di:waypoint xsi:type="dc:Point" x="377.0" y="260.0"/>
+        <di:waypoint xsi:type="dc:Point" x="377.0" y="193.0"/>
+        <di:waypoint xsi:type="dc:Point" x="362.0" y="193.0"/>
+        <di:waypoint xsi:type="dc:Point" x="362.0" y="125.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_13" bpmnElement="_jbpm-unique-80-_jbpm-unique-89" sourceElement="BPMNShape_ScriptTask_1" targetElement="BPMNShape_BusinessRuleTask_1">
+        <di:waypoint xsi:type="dc:Point" x="149.0" y="34.0"/>
+        <di:waypoint xsi:type="dc:Point" x="211.0" y="34.0"/>
+        <di:waypoint xsi:type="dc:Point" x="211.0" y="50.0"/>
+        <di:waypoint xsi:type="dc:Point" x="274.0" y="50.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_14" bpmnElement="_jbpm-unique-89-_jbpm-unique-90" sourceElement="BPMNShape_BusinessRuleTask_1" targetElement="BPMNShape_ExclusiveGateway_3">
+        <di:waypoint xsi:type="dc:Point" x="322.0" y="50.0"/>
+        <di:waypoint xsi:type="dc:Point" x="411.0" y="50.0"/>
+        <di:waypoint xsi:type="dc:Point" x="411.0" y="54.0"/>
+        <di:waypoint xsi:type="dc:Point" x="500.0" y="54.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_15" bpmnElement="_jbpm-unique-90-_jbpm-unique-91" sourceElement="BPMNShape_ExclusiveGateway_3" targetElement="BPMNShape_ScriptTask_8">
+        <di:waypoint xsi:type="dc:Point" x="524.0" y="78.0"/>
+        <di:waypoint xsi:type="dc:Point" x="524.0" y="172.0"/>
+        <di:waypoint xsi:type="dc:Point" x="755.0" y="172.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="30.0" width="77.0" x="555.0" y="173.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_16" bpmnElement="_jbpm-unique-91-_jbpm-unique-92" sourceElement="BPMNShape_ScriptTask_8" targetElement="BPMNShape_ScriptTask_9">
+        <di:waypoint xsi:type="dc:Point" x="779.0" y="196.0"/>
+        <di:waypoint xsi:type="dc:Point" x="779.0" y="267.0"/>
+        <di:waypoint xsi:type="dc:Point" x="769.0" y="267.0"/>
+        <di:waypoint xsi:type="dc:Point" x="769.0" y="338.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_17" bpmnElement="_jbpm-unique-93-_jbpm-unique-94" sourceElement="BPMNShape_UserTask_1" targetElement="BPMNShape_ExclusiveGateway_4">
+        <di:waypoint xsi:type="dc:Point" x="544.0" y="386.0"/>
+        <di:waypoint xsi:type="dc:Point" x="544.0" y="464.0"/>
+        <di:waypoint xsi:type="dc:Point" x="348.0" y="464.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_18" bpmnElement="_jbpm-unique-92-_jbpm-unique-93" sourceElement="BPMNShape_ScriptTask_9" targetElement="BPMNShape_UserTask_1">
+        <di:waypoint xsi:type="dc:Point" x="745.0" y="362.0"/>
+        <di:waypoint xsi:type="dc:Point" x="657.0" y="362.0"/>
+        <di:waypoint xsi:type="dc:Point" x="568.0" y="362.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
