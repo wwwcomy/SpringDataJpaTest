@@ -3,7 +3,6 @@ package com.drools.test;
 import java.util.Collection;
 
 import org.kie.api.KieServices;
-import org.kie.api.builder.KieFileSystem;
 import org.kie.api.io.Resource;
 import org.kie.api.io.ResourceType;
 import org.kie.internal.KnowledgeBase;
@@ -13,12 +12,12 @@ import org.kie.internal.builder.KnowledgeBuilderFactory;
 import org.kie.internal.definition.KnowledgePackage;
 import org.kie.internal.runtime.StatefulKnowledgeSession;
 
+@SuppressWarnings("deprecation")
 public class MyMain {
 	public static void main(String[] args) {
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 		// this will parse and compile in one step
 		KieServices kieServices = KieServices.Factory.get();
-		KieFileSystem kfs = kieServices.newKieFileSystem();
 		Resource resource = kieServices.getResources().newClassPathResource("first.drl");
 		kbuilder.add(resource, ResourceType.DRL);
 		// Check the builder for errors
@@ -29,7 +28,6 @@ public class MyMain {
 		// get the compiled packages (which are serializable)
 		Collection<KnowledgePackage> pkgs = kbuilder.getKnowledgePackages();
 		// add the packages to a knowledgebase (deploy the knowledge packages).
-		@SuppressWarnings("deprecation")
 		KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
 		kbase.addKnowledgePackages(pkgs);
 		StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();

@@ -1,3 +1,5 @@
+package com.drools.test;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,6 +16,7 @@ public class ApiKeyParser {
 		new ApiKeyParser().parse();
 	}
 
+	@SuppressWarnings("unchecked")
 	private void parse() throws Exception {
 		File file = new File("c:/temp/API_keys.txt");
 		FileReader fr = new FileReader(file);
@@ -25,10 +28,10 @@ public class ApiKeyParser {
 			String[] s = line.split("\\t");
 			String method = s[0];
 			String json = s[1];
-			Map m = new ObjectMapper().readValue(json, Map.class);
-			List<Map> parameterMap = (List) m.get("parameterObjects");
+			Map<String, Object> m = new ObjectMapper().readValue(json, Map.class);
+			List<Map<String, Object>> parameterMap = (List<Map<String, Object>>) m.get("parameterObjects");
 			String uri = "";
-			for (Map param : parameterMap) {
+			for (Map<String, Object> param : parameterMap) {
 				if ("uri".equalsIgnoreCase(String.valueOf(param.get("objectKey")))) {
 					uri = String.valueOf(param.get("objectValue"));
 					break;
@@ -45,6 +48,7 @@ public class ApiKeyParser {
 			}
 			i++;
 		}
+		br.close();
 	}
 
 	private String nullCheck(Object object) {
