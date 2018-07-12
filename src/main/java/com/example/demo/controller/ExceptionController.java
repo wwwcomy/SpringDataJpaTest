@@ -11,9 +11,9 @@ import com.example.demo.controller.advice.Response;
 @RequestMapping(path = "/exceptions")
 public class ExceptionController {
 
-	@RequestMapping(path = "/{exceptionId}", method = RequestMethod.GET)
-	public Response getException(@PathVariable String exceptionId) {
-		throw new RuntimeException();
-	}
+    @RequestMapping(path = "/{exceptionId}", method = RequestMethod.GET)
+    public Response getException(@PathVariable String exceptionId) {
+        throw new RuntimeException();
+    }
 
 }

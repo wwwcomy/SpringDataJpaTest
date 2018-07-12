@@ -9,5 +9,5 @@ import com.example.demo.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-	Page<User> findByName(String name, Pageable pageable);
+    Page<User> findByName(String name, Pageable pageable);
 }

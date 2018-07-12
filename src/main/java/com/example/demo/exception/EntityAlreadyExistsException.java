@@ -5,12 +5,11 @@ package com.example.demo.exception;
  *
  */
 public class EntityAlreadyExistsException extends RuntimeException {
-	private static final long serialVersionUID = -3350262420867359131L;
+    private static final long serialVersionUID = -3350262420867359131L;
 
-	public EntityAlreadyExistsException() {
-	}
+    public EntityAlreadyExistsException() {}
 
-	public EntityAlreadyExistsException(String s) {
-		super(s);
-	}
+    public EntityAlreadyExistsException(String s) {
+        super(s);
+    }
 }

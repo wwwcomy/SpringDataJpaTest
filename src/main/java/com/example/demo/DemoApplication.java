@@ -24,30 +24,30 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class DemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
 
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
-	@Bean
-	public Docket createRestApi() {
-		ParameterBuilder tokenPar = new ParameterBuilder();
-		List<Parameter> pars = new ArrayList<Parameter>();
-		tokenPar.name("token").description("Token").modelRef(new ModelRef("string")).parameterType("header")
-				.required(false).build();
-		pars.add(tokenPar.build());
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-				.apis(RequestHandlerSelectors.basePackage("com.example.demo.controller")).paths(PathSelectors.any())
-				.build().globalOperationParameters(pars);
-	}
+    @Bean
+    public Docket createRestApi() {
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<Parameter>();
+        tokenPar.name("token").description("Token").modelRef(new ModelRef("string")).parameterType("header")
+            .required(false).build();
+        pars.add(tokenPar.build());
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
+            .apis(RequestHandlerSelectors.basePackage("com.example.demo.controller")).paths(PathSelectors.any()).build()
+            .globalOperationParameters(pars);
+    }
 
-	private ApiInfo apiInfo() {
-		Contact contact = new Contact("wwwcomy", "", "wwwcomy@gmail.com");
-		return new ApiInfoBuilder().title("Task Manager").description("Task management service").contact(contact)
-				.version("1.0").build();
-	}
+    private ApiInfo apiInfo() {
+        Contact contact = new Contact("wwwcomy", "", "wwwcomy@gmail.com");
+        return new ApiInfoBuilder().title("Task Manager").description("Task management service").contact(contact)
+            .version("1.0").build();
+    }
 }

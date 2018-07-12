@@ -18,36 +18,36 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @EnableAutoConfiguration
 @EnableJpaAuditing
-@ComponentScan(basePackages = "com.example.demo", excludeFilters = {
-		@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = DemoApplication.class) })
+@ComponentScan(basePackages = "com.example.demo",
+    excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = DemoApplication.class)})
 public class Main1 {
-	static Logger logger = LoggerFactory.getLogger(Main1.class);
+    static Logger logger = LoggerFactory.getLogger(Main1.class);
 
-	@Bean
-	public RestTemplate restOperations() {
-		RestTemplate rest = new RestTemplate();
-		// this is crucial!
-		rest.getMessageConverters().add(0, mappingJacksonHttpMessageConverter());
-		return rest;
-	}
+    @Bean
+    public RestTemplate restOperations() {
+        RestTemplate rest = new RestTemplate();
+        // this is crucial!
+        rest.getMessageConverters().add(0, mappingJacksonHttpMessageConverter());
+        return rest;
+    }
 
-	@Bean
-	public MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter() {
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		converter.setObjectMapper(myObjectMapper());
-		return converter;
-	}
+    @Bean
+    public MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter() {
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setObjectMapper(myObjectMapper());
+        return converter;
+    }
 
-	@Bean
-	public ObjectMapper myObjectMapper() {
-		ObjectMapper om = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		return om;
-	}
+    @Bean
+    public ObjectMapper myObjectMapper() {
+        ObjectMapper om = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return om;
+    }
 
-	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(Main1.class);
-		app.setWebEnvironment(false);
-		app.run(args);
-	}
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(Main1.class);
+        app.setWebEnvironment(false);
+        app.run(args);
+    }
 
 }

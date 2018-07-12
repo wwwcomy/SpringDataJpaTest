@@ -8,24 +8,24 @@ import javax.persistence.Table;
 @Table(name = "PLAIN_TABLE")
 public class PlainTable {
 
-	@Id
-	private String prefix;
-	private boolean wtf;
+    @Id
+    private String prefix;
+    private boolean wtf;
 
-	public String getPrefix() {
-		return prefix;
-	}
+    public String getPrefix() {
+        return prefix;
+    }
 
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
-	}
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
 
-	public boolean isWtf() {
-		return wtf;
-	}
+    public boolean isWtf() {
+        return wtf;
+    }
 
-	public void setWtf(boolean wtf) {
-		this.wtf = wtf;
-	}
+    public void setWtf(boolean wtf) {
+        this.wtf = wtf;
+    }
 
 }

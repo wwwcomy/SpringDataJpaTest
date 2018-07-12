@@ -19,38 +19,38 @@ import org.springframework.web.client.RestTemplate;
 @AutoConfigureMockMvc
 public class RestTemplateTest {
 
-	@Autowired
-	RestTemplate restTemplate;
+    @Autowired
+    RestTemplate restTemplate;
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Test
-	public void callOther() throws UnsupportedEncodingException {
-		HttpHeaders requestHeaders = new HttpHeaders();
-		requestHeaders.set("Authorization", "Basic xxxx");
-		org.springframework.http.HttpEntity<?> requestEntity = new org.springframework.http.HttpEntity<Object>(
-				requestHeaders);
-		String url = "http://xxx/xxx";
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void callOther() throws UnsupportedEncodingException {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.set("Authorization", "Basic xxxx");
+        org.springframework.http.HttpEntity<?> requestEntity =
+            new org.springframework.http.HttpEntity<Object>(requestHeaders);
+        String url = "http://xxx/xxx";
 
-		System.out.println(url);
-		ResponseEntity<List> entity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, List.class);
-		List<Object> result = entity.getBody();
-		System.out.println("---------------");
-		System.out.println(result);
-		System.out.println("===============");
-	}
+        System.out.println(url);
+        ResponseEntity<List> entity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, List.class);
+        List<Object> result = entity.getBody();
+        System.out.println("---------------");
+        System.out.println(result);
+        System.out.println("===============");
+    }
 
-	@Test
-	public void callOther1() {
-		HttpHeaders requestHeaders = new HttpHeaders();
-		requestHeaders.set("Authorization", "Basic xxx");
-		org.springframework.http.HttpEntity<?> requestEntity = new org.springframework.http.HttpEntity<Object>(
-				requestHeaders);
-		String url = "http://xxxx";
-		ResponseEntity<String> entity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
-		// ResponseEntity<List> entity = restTemplate.getForEntity(url, List.class);
-		String result = entity.getBody();
-		System.out.println("---------------");
-		System.out.println(result);
-		System.out.println("===============");
-	}
+    @Test
+    public void callOther1() {
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.set("Authorization", "Basic xxx");
+        org.springframework.http.HttpEntity<?> requestEntity =
+            new org.springframework.http.HttpEntity<Object>(requestHeaders);
+        String url = "http://xxxx";
+        ResponseEntity<String> entity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+        // ResponseEntity<List> entity = restTemplate.getForEntity(url, List.class);
+        String result = entity.getBody();
+        System.out.println("---------------");
+        System.out.println(result);
+        System.out.println("===============");
+    }
 }

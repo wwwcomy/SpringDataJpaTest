@@ -5,12 +5,11 @@ package com.example.demo.exception;
  *
  */
 public class EntityNotFoundException extends RuntimeException {
-	private static final long serialVersionUID = -3350262420867359131L;
+    private static final long serialVersionUID = -3350262420867359131L;
 
-	public EntityNotFoundException() {
-	}
+    public EntityNotFoundException() {}
 
-	public EntityNotFoundException(String s) {
-		super(s);
-	}
+    public EntityNotFoundException(String s) {
+        super(s);
+    }
 }

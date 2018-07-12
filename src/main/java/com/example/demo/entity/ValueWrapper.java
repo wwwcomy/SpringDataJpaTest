@@ -4,13 +4,13 @@ import java.util.List;
 
 public class ValueWrapper {
 
-	private List<String> wtf;
+    private List<String> wtf;
 
-	public List<String> getWtf() {
-		return wtf;
-	}
+    public List<String> getWtf() {
+        return wtf;
+    }
 
-	public void setWtf(List<String> wtf) {
-		this.wtf = wtf;
-	}
+    public void setWtf(List<String> wtf) {
+        this.wtf = wtf;
+    }
 }
