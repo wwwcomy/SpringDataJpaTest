@@ -7,30 +7,38 @@ import javax.persistence.GeneratedValue;
 
 @Embeddable
 public class VersionedEntityPk implements Serializable {
-    private static final long serialVersionUID = 6354232374624420251L;
-    private Long id;
-    private int version;
+	private static final long serialVersionUID = 6354232374624420251L;
+	private Long id;
+	private Double version;
 
-    @GeneratedValue
-    public Long getId() {
-        return id;
-    }
+	public VersionedEntityPk() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public VersionedEntityPk(Long id2, double version2) {
+		this.id = id2;
+		this.version = version2;
+	}
 
-    public int getVersion() {
-        return version;
-    }
+	@GeneratedValue
+	public Long getId() {
+		return id;
+	}
 
-    public void setVersion(int version) {
-        this.version = version;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    @Override
-    public String toString() {
-        return "VersionedEntityPk [id=" + id + ", version=" + version + "]";
-    }
+	public Double getVersion() {
+		return version;
+	}
+
+	public void setVersion(Double version) {
+		this.version = version;
+	}
+
+	@Override
+	public String toString() {
+		return "VersionedEntityPk [id=" + id + ", version=" + version + "]";
+	}
 
 }
