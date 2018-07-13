@@ -2,6 +2,10 @@ package com.example.demo.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 /**
  * @author wwwcomy
@@ -10,33 +14,50 @@ import javax.persistence.Entity;
 @Entity
 public class VersionedEntity {
 
-    private VersionedEntityPk pk;
-    private String name;
-    private String description;
+	private VersionedEntityPk pk;
+	private String name;
+	private String description;
 
-    @EmbeddedId
-    public VersionedEntityPk getPk() {
-        return pk;
-    }
+	@EmbeddedId
+	@JsonProperty(access = Access.WRITE_ONLY)
+	public VersionedEntityPk getPk() {
+		return pk;
+	}
 
-    public void setPk(VersionedEntityPk pk) {
-        this.pk = pk;
-    }
+	public void setPk(VersionedEntityPk pk) {
+		this.pk = pk;
+	}
 
-    public String getName() {
-        return name;
-    }
+	@Transient
+	public Long getId() {
+		if (pk == null) {
+			return null;
+		}
+		return pk.getId();
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@Transient
+	public Double getVersion() {
+		if (pk == null) {
+			return null;
+		}
+		return pk.getVersion();
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }

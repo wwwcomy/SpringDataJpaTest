@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class ErrorHandlingAdvice {
 
-    private final Log logger = LogFactory.getLog(getClass());
+	private final Log logger = LogFactory.getLog(getClass());
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
-    @ResponseBody
-    public Response handle(Exception ex) {
-        logger.error("Entering exception handler for Exception");
-        logger.error("Handling " + ex.getClass().toString() + ": " + ex.getMessage(), ex);
-        return new Response("exception", "An error occurred");
-    }
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+	@ResponseBody
+	public Response handle(Exception ex) {
+		logger.error("Entering exception handler for Exception");
+		logger.error("Handling " + ex.getClass().toString() + ": " + ex.getMessage(), ex);
+		return new Response("exception", ex.getMessage());
+	}
 
 }
