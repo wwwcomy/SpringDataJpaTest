@@ -28,12 +28,12 @@ public class VertionedEntityController {
 		return versionedEntityService.findAll();
 	}
 
-	@RequestMapping(path = "/{id:.+}", method = RequestMethod.GET)
+	@RequestMapping(path = "/id/{id:.+}", method = RequestMethod.GET)
 	public List<VersionedEntity> listVersionedEntityById(@PathVariable Long id) {
 		return versionedEntityService.findVersionedEntityById(id);
 	}
 
-	@RequestMapping(path = "/{id:.+}/version/{version:.+}", method = RequestMethod.GET)
+	@RequestMapping(path = "/id/{id:.+}/version/{version:.+}", method = RequestMethod.GET)
 	public VersionedEntity getVersionedEntityByIdAndVersion(@PathVariable Long id, @PathVariable double version) {
 		logger.info("getVersionedEntityByIdAndVersion, id:{}, version:{}", id, version);
 		VersionedEntityPk pk = new VersionedEntityPk(id, version);
