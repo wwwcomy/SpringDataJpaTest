@@ -33,12 +33,6 @@ public class LogicGroup {
 	@Column(name = "GROUP_NAME")
 	private String groupName;
 
-	@Column(name = "CREATER_ID")
-	private String createrId;
-
-	@Column(name = "CREATER_NAME")
-	private String createrName;
-
 	@Column(name = "PARENT_ID")
 	private Long parentId;
 
@@ -48,35 +42,11 @@ public class LogicGroup {
 	@Column(name = "LAST_UPDATE_DATE")
 	private Date lastUpdateDate;
 
-	@Column(name = "VISIBLE")
-	private String visible;
-
-	@Column(name = "EXTERNAL")
-	private String external;
-
-	@Column(name = "HAS_CHILD")
-	private String hasChild;
-
-	@Column(name = "IS_BUNDLE")
-	private String isBundle;
-
 	@Column(name = "BRIEF_DESCRIPTION")
 	private String briefDescription;
 
-	@Column(name = "ACCESS_ABLE_LEVELS")
-	private String accessAbleLevels;
-
-	@Column(name = "CUT_POINT_LEVEL")
-	private String cutPointLevel;
-
-	@Column(name = "GROUP_FILTER_NAME")
-	private String groupFilterName;
-
 	@Column(name = "DISPLAY_GROUP_NAME")
 	private String displayGroupName;
-
-	@Column(name = "TEMPLATETYPE")
-	private String templateType;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "GROUP_PARAMS", joinColumns = @JoinColumn(name = "GROUP_ID"))
@@ -107,22 +77,6 @@ public class LogicGroup {
 		this.groupName = groupName;
 	}
 
-	public String getCreaterId() {
-		return createrId;
-	}
-
-	public void setCreaterId(String createrId) {
-		this.createrId = createrId;
-	}
-
-	public String getCreaterName() {
-		return createrName;
-	}
-
-	public void setCreaterName(String createrName) {
-		this.createrName = createrName;
-	}
-
 	public Long getParentId() {
 		return parentId;
 	}
@@ -147,38 +101,6 @@ public class LogicGroup {
 		this.lastUpdateDate = lastUpdateDate;
 	}
 
-	public String getVisible() {
-		return visible;
-	}
-
-	public void setVisible(String visible) {
-		this.visible = visible;
-	}
-
-	public String getExternal() {
-		return external;
-	}
-
-	public void setExternal(String external) {
-		this.external = external;
-	}
-
-	public String getHasChild() {
-		return hasChild;
-	}
-
-	public void setHasChild(String hasChild) {
-		this.hasChild = hasChild;
-	}
-
-	public String getIsBundle() {
-		return isBundle;
-	}
-
-	public void setIsBundle(String isBundle) {
-		this.isBundle = isBundle;
-	}
-
 	public String getBriefDescription() {
 		return briefDescription;
 	}
@@ -187,44 +109,12 @@ public class LogicGroup {
 		this.briefDescription = briefDescription;
 	}
 
-	public String getAccessAbleLevels() {
-		return accessAbleLevels;
-	}
-
-	public void setAccessAbleLevels(String accessAbleLevels) {
-		this.accessAbleLevels = accessAbleLevels;
-	}
-
-	public String getCutPointLevel() {
-		return cutPointLevel;
-	}
-
-	public void setCutPointLevel(String cutPointLevel) {
-		this.cutPointLevel = cutPointLevel;
-	}
-
-	public String getGroupFilterName() {
-		return groupFilterName;
-	}
-
-	public void setGroupFilterName(String groupFilterName) {
-		this.groupFilterName = groupFilterName;
-	}
-
 	public String getDisplayGroupName() {
 		return displayGroupName;
 	}
 
 	public void setDisplayGroupName(String displayGroupName) {
 		this.displayGroupName = displayGroupName;
-	}
-
-	public String getTemplateType() {
-		return templateType;
-	}
-
-	public void setTemplateType(String templateType) {
-		this.templateType = templateType;
 	}
 
 	public Map<String, String> getGroupParams() {
