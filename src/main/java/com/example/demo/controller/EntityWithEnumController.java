@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.EntityWithEnum;
+import com.example.demo.entity.UserType;
 import com.example.demo.repository.EntityWithEnumRepository;
 
 @RestController
@@ -27,6 +29,11 @@ public class EntityWithEnumController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<EntityWithEnum> listEntityWithEnum() {
 		return repository.findAll();
+	}
+
+	@RequestMapping(value = "/bitwise", method = RequestMethod.GET)
+	public List<EntityWithEnum> listVisiableEntityWithEnum(@RequestParam UserType type) {
+		return repository.listEntityWithEnumByType(type.getValue());
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -30,6 +30,10 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @MappedSuperclass
 public abstract class BasePersistedObject {
 
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(unique = true, nullable = false)
     @JsonProperty(access = Access.READ_ONLY)
     private String id;
     @JsonProperty(access = Access.READ_ONLY)
@@ -49,10 +53,6 @@ public abstract class BasePersistedObject {
     @LastModifiedBy
     private String updatedBy;
 
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(unique = true, nullable = false)
     public String getId() {
         return id;
     }

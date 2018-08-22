@@ -15,11 +15,14 @@ import com.example.demo.entity.LogicGroup;
 @Repository
 public interface LogicGroupRepository extends JpaRepository<LogicGroup, Long> {
 
-    @Query(value = "select l from LogicGroup l join l.groupParams p where KEY(p) = :paramKey and p IN :paramValues ")
-    List<LogicGroup> findByParamValueIn(@Param(value = "paramKey") String key,
-        @Param(value = "paramValues") List<String> paramValues);
+	@Query(value = "select l from LogicGroup l join l.groupParams p where KEY(p) = :paramKey and p IN :paramValues ")
+	List<LogicGroup> findByParamValueIn(@Param(value = "paramKey") String key,
+			@Param(value = "paramValues") List<String> paramValues);
 
-    @Query(value = "select l from LogicGroup l join l.groupParams p where KEY(p) = :paramKey and p = :paramValue ")
-    List<LogicGroup> findByParamValue(@Param(value = "paramKey") String key,
-        @Param(value = "paramValue") String paramValue);
+	@Query(value = "select l from LogicGroup l join l.groupParams p where KEY(p) = :paramKey and p = :paramValue ")
+	List<LogicGroup> findByParamValue(@Param(value = "paramKey") String key,
+			@Param(value = "paramValue") String paramValue);
+
+	@Query(value = "select * from logic_group t_1 where t_1.id =:id", nativeQuery = true)
+	LogicGroup findLogicGroupByIdNative(@Param(value = "id") Long id);
 }

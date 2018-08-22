@@ -1,12 +1,14 @@
 package com.example.demo.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
 public class EntityWithEnum extends BasePersistedObject {
 
 	private String entityName;
-	private UserType ut;
+	@Column(name = "user_type")
+	private int userTypeFlag;
 
 	public String getEntityName() {
 		return entityName;
@@ -16,11 +18,17 @@ public class EntityWithEnum extends BasePersistedObject {
 		this.entityName = entityName;
 	}
 
-	public UserType getUt() {
-		return ut;
+	/**
+	 * Without @Enumerated, the default value saved is integer, which is the order
+	 * defined in enum.
+	 * 
+	 * @return
+	 */
+	public UserType getUserType() {
+		return UserType.parse(userTypeFlag);
 	}
 
-	public void setUt(UserType ut) {
-		this.ut = ut;
+	public void setUserType(UserType ut) {
+		this.userTypeFlag = ut.getValue();
 	}
 }
