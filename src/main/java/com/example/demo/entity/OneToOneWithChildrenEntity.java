@@ -10,12 +10,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class OneToOneWithChildrenEntity extends BasePersistedObject {
 
 	@Column(length = 200, name = "NAME")
+	@NotEmpty
 	private String name;
 	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
 	private Set<OneToOneWithChildrenEntity> children;
