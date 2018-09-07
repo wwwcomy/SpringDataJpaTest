@@ -64,6 +64,11 @@
 			<artifactId>drools-compiler</artifactId>
 			<version>6.3.0.Final</version>
 		</dependency>
+		<!-- This can be used by Spring RestTemplate -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
