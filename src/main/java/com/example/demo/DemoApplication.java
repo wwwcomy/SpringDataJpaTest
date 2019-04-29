@@ -1,11 +1,24 @@
 package com.example.demo;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.net.ssl.SSLContext;
+
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -36,8 +49,30 @@ public class DemoApplication {
 	}
 
 	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
+	public RestTemplate restTemplate() throws NoSuchAlgorithmException {
+		javax.net.ssl.HttpsURLConnection.setDefaultHostnameVerifier(
+				// bypass the no subject matching error
+				new javax.net.ssl.HostnameVerifier() {
+					public boolean verify(String hostname, javax.net.ssl.SSLSession sslSession) {
+						return true;
+					}
+				});
+		CloseableHttpClient httpClient = null;
+		SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(SSLContext.getDefault(),
+				new NoopHostnameVerifier());
+		httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
+		Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
+				.register("https", sslsf).build();
+		PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
+		connManager.setMaxTotal(200);
+		connManager.setDefaultMaxPerRoute(20);
+		httpClient = HttpClients.custom().setConnectionManager(connManager).build();
+		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
+		factory.setConnectTimeout(60000);
+		factory.setReadTimeout(300000);
+		factory.setConnectionRequestTimeout(2000);
+		RestTemplate restTemplate = new RestTemplate(factory);
+		return restTemplate;
 	}
 
 	@Bean
